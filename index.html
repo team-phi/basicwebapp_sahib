@@ -12,6 +12,7 @@
         <h1 id="gameHeader">Welcome to my game</h1>
         <div id="game">
             <div id="status">X's turn</div>
+            <div id="probability" class="probability">Winning Probability: 0%</div> <!-- New line for probability -->
             <div id="board" class="board">
                 <div class="cell" data-cell-index="0"></div>
                 <div class="cell" data-cell-index="1"></div>
@@ -26,6 +27,7 @@
             <button id="restartButton" class="restart-button">Restart Game</button>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script> <!-- Include confetti library -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 const cells = document.querySelectorAll('.cell');
 const statusText = document.getElementById('status');
+const probabilityText = document.getElementById('probability'); // New line for probability
 const restartButton = document.getElementById('restartButton');
 const gameHeader = document.getElementById('gameHeader');
 let currentPlayer = 'X';
@@ -37,7 +38,13 @@ function checkForWinner() {
 
     if (roundWon) {
         statusText.innerText = `${currentPlayer} Wins!`;
+        confetti({ // Trigger confetti effect
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
         running = false;
+        cells.forEach(cell => cell.removeEventListener('click', cellClicked)); // Disable further clicks
         return;
     }
 
@@ -49,6 +56,7 @@ function checkForWinner() {
 
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     statusText.innerText = `${currentPlayer}'s turn`;
+    updateProbability(); // Update probability after each turn
 }
 
 function cellClicked() {
@@ -69,9 +77,11 @@ function restartGame() {
     cells.forEach(cell => {
         cell.innerText = '';
         cell.classList.remove('taken');
+        cell.addEventListener('click', cellClicked); // Re-enable clicks on cells
     });
     running = true;
     updateGameHeader();
+    updateProbability(); // Update probability on game restart
 }
 
 function updateGameHeader() {
@@ -85,6 +95,21 @@ function updateGameHeader() {
 
     const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
     gameHeader.innerText = welcomeMessages[randomIndex];
+}
+
+// New function to update winning probability
+function updateProbability() {
+    let playerXProbability = 50; // Starting probability
+    let playerOProbability = 50; // Starting probability
+
+    const playerXCells = [...cells].filter(cell => cell.innerText === 'X').length;
+    const playerOCells = [...cells].filter(cell => cell.innerText === 'O').length;
+    
+    playerXProbability += playerXCells * 5;
+    playerOProbability += playerOCells * 5;
+
+    const probabilityDisplay = currentPlayer === 'X' ? playerXProbability : playerOProbability;
+    probabilityText.innerText = `Winning Probability: ${probabilityDisplay}%`;
 }
 
 cells.forEach(cell => cell.addEventListener('click', cellClicked));

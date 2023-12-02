@@ -1,27 +1,71 @@
-#game {
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    margin: 0;
+}
+
+.game-container {
     text-align: center;
-    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background: #fff;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
 }
 
 #board {
     display: grid;
     grid-template-columns: repeat(3, 100px);
     grid-template-rows: repeat(3, 100px);
-    gap: 5px;
-    margin: auto;
+    gap: 10px;
+    margin: 0 auto 20px;
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
-    background-color: #ddd;
+    background: #e3e3e3;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cell:hover {
+    background-color: #d4d4d4;
 }
 
 .cell.taken {
-    pointer-events: none;
+    cursor: default;
+}
+
+#status {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.restart-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.restart-button:hover {
+    background-color: #45a049;
 }

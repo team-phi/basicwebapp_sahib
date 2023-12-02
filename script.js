@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 const statusText = document.getElementById('status');
 const restartButton = document.getElementById('restartButton');
+const gameHeader = document.getElementById('gameHeader');
 let currentPlayer = 'X';
 let running = false;
 
@@ -35,7 +36,7 @@ function checkForWinner() {
     }
 
     if (roundWon) {
-        statusText.innerText = `${currentPlayer}'s Wins!`;
+        statusText.innerText = `${currentPlayer} Wins!`;
         running = false;
         return;
     }
@@ -70,6 +71,20 @@ function restartGame() {
         cell.classList.remove('taken');
     });
     running = true;
+    updateGameHeader();
+}
+
+function updateGameHeader() {
+    const welcomeMessages = [
+        "Welcome to my game",
+        "Ready for another round?",
+        "Let's play Tic Tac Toe!",
+        "Another game, another fun!",
+        "Tic Tac Toe Time!"
+    ];
+
+    const randomIndex = Math.floor(Math.random() * welcomeMessages.length);
+    gameHeader.innerText = welcomeMessages[randomIndex];
 }
 
 cells.forEach(cell => cell.addEventListener('click', cellClicked));

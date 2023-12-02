@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', sans-serif; /* Change to Inter font */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,20 +30,21 @@ h1 {
 }
 
 .cell {
-    background: #e3e3e3;
+    background: #fff; /* Background color changed to white */
+    border: 1px solid #333; /* 1px border added */
+    border-radius: 2px; /* Corner radius of 2px */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 36px;
     font-weight: bold;
     color: #333;
-    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .cell:hover {
-    background-color: #d4d4d4;
+    background-color: #e6e6e6;
 }
 
 .cell.taken {
